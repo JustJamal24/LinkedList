@@ -2,6 +2,8 @@ package utils;
 
 import business.Song;
 
+import java.sql.SQLOutput;
+
 /**
  *
  * @author michelle
@@ -33,6 +35,19 @@ public class LinkedList {
         }
         return current.getData();
 
+        }
+
+        public int indexOf(Song song) {
+                int index = 0;
+                Node current = head;
+                while (current!= null) {
+                        if (current.getData().equals(song)) {
+                                return index;
+                        }
+                        current = current.getNext();
+                        index++;
+                }
+                return -1;
         }
 
         protected static class Node {
