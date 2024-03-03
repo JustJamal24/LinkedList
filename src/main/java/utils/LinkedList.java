@@ -70,6 +70,23 @@ public class LinkedList {
                 }
                 return false;
         }
+        // A method called tail() that takes no parameters. This should return the last element in the list.
+        public Song tail() {
+                if(head == null) {
+                        return null;
+                }
+                else{
+                        Node current = head;
+                        while(current.getNext()!= null) {
+                                current = current.getNext();
+                        }
+                        return current.getData();
+                }
+
+        }
+
+
+
 
 
         protected static class Node {
