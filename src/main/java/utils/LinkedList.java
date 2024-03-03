@@ -37,11 +37,11 @@ public class LinkedList {
 
         }
 
-        public int indexOf(Song song) {
+        public int indexOf(Song toBeFound) {
                 int index = 0;
                 Node current = head;
                 while (current!= null) {
-                        if (current.getData().equals(song)) {
+                        if (current.getData().equals(toBeFound)) {
                                 return index;
                         }
                         current = current.getNext();
@@ -49,6 +49,21 @@ public class LinkedList {
                 }
                 return -1;
         }
+
+        public void add(Song toBeAdded) {
+                Node newNode = new Node(toBeAdded);
+                if (head == null) {
+                        head = newNode;
+                } else {
+                        Node current = head;
+                        while (current.getNext() != null) {
+                                current = current.getNext();
+                        }
+                        current.setNext(newNode);
+                }
+                numberOfSongs++;
+        }
+
 
         protected static class Node {
                 private Song data;
