@@ -64,6 +64,13 @@ public class LinkedList {
                 numberOfSongs++;
         }
 
+        public boolean isEmpty() {
+                if(head == null) {
+                        return true;
+                }
+                return false;
+        }
+
 
         protected static class Node {
                 private Song data;
