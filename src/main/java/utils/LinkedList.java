@@ -85,6 +85,23 @@ public class LinkedList {
 
         }
 
+        public boolean contains(Song toBeFound) {
+                Node current = head;
+                while (current!= null) {
+                        if (current.getData().equals(toBeFound)) {
+                                return true;
+                        }
+                        current = current.getNext();
+                }
+                return false;
+        }
+
+         
+
+
+
+
+
 
 
 
