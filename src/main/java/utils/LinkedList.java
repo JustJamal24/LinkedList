@@ -11,12 +11,11 @@ import java.sql.SQLOutput;
 public class LinkedList {
 
         private Node head;
-        private Node tail;
         private int numberOfSongs;
 
         public LinkedList() {
                 this.head = null;
-                this.tail = null;
+
                 this.numberOfSongs = 0;
         }
 
@@ -95,6 +94,31 @@ public class LinkedList {
                 }
                 return false;
         }
+
+
+        public boolean removeAll(Song toBeRemoved) {
+                if(toBeRemoved == null) {
+                        return false;
+                }
+                Node current = head;
+                Node previous = null;
+                while (current!= null) {
+                        if (current.getData().equals(toBeRemoved)) {
+                                if (previous == null) { // current is at the head
+                                        head = current.getNext(); // remove the current node
+                                } else {
+                                        previous.setNext(current.getNext());
+                                }
+                                numberOfSongs--;
+                                return true;
+                        }
+                        previous = current; // update the previous node
+                        current = current.getNext(); // update the current node
+                }
+                return false;
+        }
+
+
 
          
 
