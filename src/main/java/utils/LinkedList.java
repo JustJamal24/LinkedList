@@ -8,20 +8,42 @@ import java.sql.SQLOutput;
  *
  * @author michelle
  */
+
+/**
+ * A linked list implementation specifically for storing Song objects.
+ */
 public class LinkedList {
 
         private Node head;
+        private Node tail;
         private int numberOfSongs;
 
+        /**
+         * Constructs an empty LinkedList.
+         */
         public LinkedList() {
                 this.head = null;
-
+                this.tail = null;
                 this.numberOfSongs = 0;
         }
+
+        /**
+         * Returns the number of songs in the list.
+         *
+         * @return The number of songs.
+         */
 
         public int size() {
                 return this.numberOfSongs;
         }
+
+        /**
+         * Retrieves the song at the specified position in the list.
+         *
+         * @param position The index of the song to retrieve.
+         * @return The song at the specified position.
+         * @throws IndexOutOfBoundsException If the index is out of range (index < 0 || index >= size()).
+         */
 
         public Song get(int position) {
                 if (position < 0 || position >= numberOfSongs) {
@@ -36,6 +58,16 @@ public class LinkedList {
 
         }
 
+
+        /**
+         * Returns the index of the first occurrence of the specified song in this list,
+         * or -1 if this list does not contain the song.
+         *
+         * @param toBeFound The song to search for.
+         * @return The index of the first occurrence of the specified song in this list,
+         *         or -1 if this list does not contain the song.
+         */
+
         public int indexOf(Song toBeFound) {
                 int index = 0;
                 Node current = head;
@@ -49,7 +81,16 @@ public class LinkedList {
                 return -1;
         }
 
+        /**
+         * Adds a new song to the end of the list.
+         *
+         * @param toBeAdded The song to be added.
+         */
+
         public void add(Song toBeAdded) {
+                if(contains(toBeAdded)) {
+                        return;
+                }
                 Node newNode = new Node(toBeAdded);
                 if (head == null) {
                         head = newNode;
@@ -63,13 +104,24 @@ public class LinkedList {
                 numberOfSongs++;
         }
 
+        /**
+         * Checks if the list is empty.
+         *
+         * @return true if the list is empty, false otherwise.
+         */
+
         public boolean isEmpty() {
                 if(head == null) {
                         return true;
                 }
                 return false;
         }
-        // A method called tail() that takes no parameters. This should return the last element in the list.
+
+        /**
+         * Returns the last song in the list.
+         *
+         * @return The last song in the list.
+         */
         public Song tail() {
                 if(head == null) {
                         return null;
@@ -79,10 +131,19 @@ public class LinkedList {
                         while(current.getNext()!= null) {
                                 current = current.getNext();
                         }
+
+                        tail = current;
                         return current.getData();
                 }
 
         }
+
+        /**
+         * Checks if the list contains the specified song.
+         *
+         * @param toBeFound The song to find in the list.
+         * @return true if the song is found, false otherwise.
+         */
 
         public boolean contains(Song toBeFound) {
                 Node current = head;
@@ -95,6 +156,12 @@ public class LinkedList {
                 return false;
         }
 
+        /**
+         * Removes all instances of the specified song from the list.
+         *
+         * @param toBeRemoved The song to be removed.
+         * @return true if at least one instance was removed, false otherwise.
+         */
 
         public boolean removeAll(Song toBeRemoved) {
                 if(toBeRemoved == null) {
@@ -118,18 +185,9 @@ public class LinkedList {
                 return false;
         }
 
-
-
-         
-
-
-
-
-
-
-
-
-
+        /**
+         * A nested static class to define the node structure for the linked list.
+         */
         protected static class Node {
                 private Song data;
                 private Node next;
